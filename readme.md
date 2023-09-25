@@ -1,6 +1,6 @@
 # Análisis de Cuidado Infantil en Estados Unidos (2007-2018)
 
-Este proyecto realiza un análisis detallado del cuidado infantil en Estados Unidos entre los años 2007 y 2018. El análisis se lleva a cabo en Quadro, y se basa en datos extraídos de un archivo CSV. Estos datos son posteriormente almacenados en una instancia de Microsoft SQL Server para su consulta y procesamiento.
+Este proyecto realiza un análisis detallado del cuidado infantil en Estados Unidos entre los años 2007 y 2018. El análisis se lleva a cabo en Quarto, y se basa en datos extraídos de un archivo CSV. Estos datos son posteriormente almacenados en una instancia de Microsoft SQL Server para su consulta y procesamiento.
 
 ## Objetivo
 
