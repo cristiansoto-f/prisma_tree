@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2023-09-25">
+
+<title>prisma_tree - Prisma Tree</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">prisma_tree</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a></li>
+  <li><a href="#variables-importantes" id="toc-variables-importantes" class="nav-link" data-scroll-target="#variables-importantes"><span class="header-section-number">2</span> Variables importantes</a></li>
+  <li><a href="#exploración-de-los-datos" id="toc-exploración-de-los-datos" class="nav-link" data-scroll-target="#exploración-de-los-datos"><span class="header-section-number">3</span> Exploración de los datos</a></li>
+  <li><a href="#estados-donde-es-más-caro-y-barato-el-cuidado-de-niños" id="toc-estados-donde-es-más-caro-y-barato-el-cuidado-de-niños" class="nav-link" data-scroll-target="#estados-donde-es-más-caro-y-barato-el-cuidado-de-niños"><span class="header-section-number">4</span> Estados donde es más caro y barato el cuidado de niños</a></li>
+  <li><a href="#variables-más-correlacionadas-con-los-precios-de-cuidado" id="toc-variables-más-correlacionadas-con-los-precios-de-cuidado" class="nav-link" data-scroll-target="#variables-más-correlacionadas-con-los-precios-de-cuidado"><span class="header-section-number">5</span> Variables más correlacionadas con los precios de cuidado</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Prisma Tree</h1>
+<p class="subtitle lead">Un simple analisis de los costos de cuidado de niños</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 25, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introducción" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introducción</h1>
+<p>Este informe pretende analizar los datos existentes en una base de datos. El dataset elegido es <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-09/readme.md">Childcare Costs</a>, para esto se ha descargado y guardado los datos de los csv en la base de datos a través del archivo <strong>get_and_save_data.R</strong>, este informe presume una conexión ya establecida.<br>
+</p>
+<p>Los datos originales vienen de dos csv distintos, childcare_costs y counties, esto permite simular que ambos archivos son distintas tablas en una base de datos por lo cual se pueden hacer JOINS a través de consultas. Tambien hay datos desde 2007 a 2008.</p>
+</section>
+<section id="variables-importantes" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Variables importantes</h1>
+<p>Tabla de valores clave para este analisis:</p>
+<p><strong>Tasas de desempleo</strong>: unr_16, funr_16, munr_16, unr_20to64, funr_20to64, munr_20to64.</p>
+<p><strong>Tasas de participación laboral y pobreza</strong>: flfpr_20to64, flfpr_20to64_under6, flfpr_20to64_6to17, flfpr_20to64_under6_6to17, mlfpr_20to64, pr_f, pr_p.</p>
+<p><strong>Ingresos</strong>: mhi_2018, me_2018, fme_2018, mme_2018</p>
+<table class="table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 72%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nombre de Variable</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>unr_16</td>
+<td>Tasa de desempleo de la población femenina de 16 años o más.</td>
+</tr>
+<tr class="even">
+<td>munr_16</td>
+<td>Tasa de desempleo de la población masculina de 16 años o más.</td>
+</tr>
+<tr class="odd">
+<td>unr_20to64</td>
+<td>Tasa de desempleo de la población de 20 a 64 años.</td>
+</tr>
+<tr class="even">
+<td>funr_20to64</td>
+<td>Tasa de desempleo de la población femenina de 20 a 64 años.</td>
+</tr>
+<tr class="odd">
+<td>munr_20to64</td>
+<td>Tasa de desempleo de la población masculina de 20 a 64 años.</td>
+</tr>
+<tr class="even">
+<td>flfpr_20to64</td>
+<td>Tasa de participación laboral de la población femenina de 20 a 64 años.</td>
+</tr>
+<tr class="odd">
+<td>flfpr_20to64_under6</td>
+<td>Tasa de participación laboral de la población femenina de 20 a 64 años con hijos menores de 6 años.</td>
+</tr>
+<tr class="even">
+<td>flfpr_20to64_6to17</td>
+<td>Tasa de participación laboral de la población femenina de 20 a 64 años con hijos entre 6 y 17 años.</td>
+</tr>
+<tr class="odd">
+<td>flfpr_20to64_under6_6to17</td>
+<td>Tasa de participación laboral de la población femenina de 20 a 64 años con hijos menores de 6 años y entre 6 y 17 años.</td>
+</tr>
+<tr class="even">
+<td>mlfpr_20to64</td>
+<td>Tasa de participación laboral de la población masculina de 20 a 64 años.</td>
+</tr>
+<tr class="odd">
+<td>pr_f</td>
+<td>Tasa de pobreza para familias.</td>
+</tr>
+<tr class="even">
+<td>pr_p</td>
+<td>Tasa de pobreza para individuos.</td>
+</tr>
+<tr class="odd">
+<td>mhi_2018</td>
+<td>Ingreso mediano del hogar expresado en dólares de 2018.</td>
+</tr>
+<tr class="even">
+<td>me_2018</td>
+<td>Ganancias medianas expresadas en dólares de 2018 para la población de 16 años o más.</td>
+</tr>
+<tr class="odd">
+<td>fme_2018</td>
+<td>Ganancias medianas para mujeres expresadas en dólares de 2018 para la población de 16 años o más.</td>
+</tr>
+<tr class="even">
+<td>mme_2018</td>
+<td>Ganancias medianas para hombres expresadas en dólares de 2018 para la población de 16 años o más.</td>
+</tr>
+<tr class="odd">
+<td>total_pop</td>
+<td>Cuenta de la población total.</td>
+</tr>
+<tr class="even">
+<td>mcsa</td>
+<td>Precio mediano semanal cobrado por cuidado basado en centro para aquellos que están en edad escolar basado en los resultados reportados en el informe de encuesta de tasa de mercado para el condado o la zona/grupo al que pertenece el condado.</td>
+</tr>
+<tr class="odd">
+<td>mfccsa</td>
+<td>Precio mediano semanal cobrado por cuidado familiar para aquellos que están en edad escolar basado en los resultados reportados en el informe de encuesta de tasa de mercado para el condado o la zona/grupo al que pertenece el condado.</td>
+</tr>
+<tr class="even">
+<td>mc_infant</td>
+<td>Precio mediano semanal agregado cobrado por cuidado basado en centro para bebés (es decir, de 0 a 23 meses).</td>
+</tr>
+<tr class="odd">
+<td>mc_toddler</td>
+<td>Precio mediano semanal agregado cobrado por cuidado basado en centro para niños pequeños (es decir, de 24 a 35 meses).</td>
+</tr>
+<tr class="even">
+<td>mc_preschool</td>
+<td>Precio mediano semanal agregado cobrado por cuidado basado en centro para preescolares (es decir, de 36 a 54 meses).</td>
+</tr>
+<tr class="odd">
+<td>mfcc_infant</td>
+<td>Precio mediano semanal agregado cobrado por cuidado familiar para bebés (es decir, de 0 a 23 meses).</td>
+</tr>
+<tr class="even">
+<td>mfcc_toddler</td>
+<td>Precio mediano semanal agregado cobrado por cuidado familiar para niños pequeños (es decir, de 24 a 35 meses).</td>
+</tr>
+<tr class="odd">
+<td>mfcc_preschool</td>
+<td>Precio mediano semanal agregado cobrado por cuidado familiar para preescolares (es decir, de 36 a 54 meses).</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exploración-de-los-datos" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Exploración de los datos</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, <span class="st">"SELECT TOP 10 * FROM counties"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   county_fips_code     county_name state_name state_abbreviation
+1              1001  Autauga County    Alabama                 AL
+2              1003  Baldwin County    Alabama                 AL
+3              1005  Barbour County    Alabama                 AL
+4              1007     Bibb County    Alabama                 AL
+5              1009   Blount County    Alabama                 AL
+6              1011  Bullock County    Alabama                 AL
+7              1013   Butler County    Alabama                 AL
+8              1015  Calhoun County    Alabama                 AL
+9              1017 Chambers County    Alabama                 AL
+10             1019 Cherokee County    Alabama                 AL</code></pre>
+</div>
+</div>
+<p>A continuación se obtendra los promedios de cada variable para cada año y así veremos su tendencia en el tiempo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Consultar promedios y cargarlos en una variable  </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>promedios <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, <span class="st">"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="st">    study_year,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="st">    AVG(unr_16) AS average_unr_16,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">    AVG(pr_p) AS average_pr_p,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">    AVG(me_2018) AS average_me,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="st">    AVG(mcsa) AS average_mcsa,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="st">    AVG(mfccsa) AS average_mfccsa</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM childcare_costs</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="st">  GROUP BY study_year</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY study_year;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar librerias de visualización</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un gráfico de líneas para cada variable</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>plot_unr_16 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(promedios, <span class="fu">aes</span>(<span class="at">x =</span> study_year, <span class="at">y =</span> average_unr_16)) <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Año"</span>, <span class="at">y =</span> <span class="st">"Tasa de Desempleo (16+)"</span>, <span class="at">title =</span> <span class="st">"Tendencia de Tasa de Desempleo (16+)"</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plot_pr_p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(promedios, <span class="fu">aes</span>(<span class="at">x =</span> study_year, <span class="at">y =</span> average_pr_p)) <span class="sc">+</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Año"</span>, <span class="at">y =</span> <span class="st">"Tasa de Pobreza (Individual)"</span>, <span class="at">title =</span> <span class="st">"Tendencia de Tasa de Pobreza (Individual)"</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>plot_me_2018 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(promedios, <span class="fu">aes</span>(<span class="at">x =</span> study_year, <span class="at">y =</span> average_me)) <span class="sc">+</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"green"</span>) <span class="sc">+</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Año"</span>, <span class="at">y =</span> <span class="st">"Ingreso Mediano"</span>, <span class="at">title =</span> <span class="st">"Tendencia de Ingreso Mediano"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>plot_mcsa <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(promedios, <span class="fu">aes</span>(<span class="at">x =</span> study_year, <span class="at">y =</span> average_mcsa)) <span class="sc">+</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Año"</span>, <span class="at">y =</span> <span class="st">"Precio Mediano (Center-Based Care)"</span>, <span class="at">title =</span> <span class="st">"Tendencia de Precio Mediano (Center-Based Care)"</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plot_mfccsa <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(promedios, <span class="fu">aes</span>(<span class="at">x =</span> study_year, <span class="at">y =</span> average_mfccsa)) <span class="sc">+</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"orange"</span>) <span class="sc">+</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Año"</span>, <span class="at">y =</span> <span class="st">"Precio Mediano (Family Childcare)"</span>, <span class="at">title =</span> <span class="st">"Tendencia de Precio Mediano (Family Childcare)"</span>)</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Organizar los gráficos en una cuadrícula</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  plot_unr_16,</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>  plot_pr_p,</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  plot_me_2018,</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  plot_mcsa,</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  plot_mfccsa,</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span> </span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/average and plot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>https://www.startingblocks.gov.au/other-resources/factsheets/family-day-care-or-centre-based-care-long-day-care-which-one-to-choose<br>
+</p>
+</section>
+<section id="estados-donde-es-más-caro-y-barato-el-cuidado-de-niños" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Estados donde es más caro y barato el cuidado de niños</h1>
+<p>Las siguientes consultas permiten saber los estados donde es más caro o más barato, a partir del promedio estatal del costo para el año 2018.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, <span class="st">"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">  WITH StateAverages AS (</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">        state_name, </span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="st">        AVG(mcsa) as avg_mcsa, </span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="st">        AVG(mfccsa) as avg_mfccsa</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="st">        childcare_costs AS cc</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="st">    JOIN </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="st">        counties AS c ON cc.county_fips_code = c.county_fips_code</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="st">    WHERE </span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="st">        study_year = 2018</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">        state_name</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">  )</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT TOP 10</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">      state_name, avg_mcsa, avg_mfccsa</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM </span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">      StateAverages</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY </span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="st">      avg_mcsa DESC, avg_mfccsa DESC;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      state_name avg_mcsa avg_mfccsa
+1  Massachusetts 199.1500   194.2857
+2       New York 195.8518   161.2285
+3     New Jersey 193.6005   147.0724
+4        Vermont 173.6650   151.1479
+5  New Hampshire 172.8920   159.2410
+6     California 166.7183   160.7507
+7      Wisconsin 151.5159   134.1625
+8      Minnesota 151.2069   119.7701
+9       Maryland 149.8742   130.0771
+10  Pennsylvania 148.3746   129.2584</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dbGetQuery</span>(con, <span class="st">"</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">  WITH StateAverages AS (</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">    SELECT </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">        state_name, </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">        AVG(mcsa) as avg_mcsa, </span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">        AVG(mfccsa) as avg_mfccsa</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">    FROM </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">        childcare_costs AS cc</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">    JOIN </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">        counties AS c ON cc.county_fips_code = c.county_fips_code</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">    WHERE </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">        study_year = 2018</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">    GROUP BY </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">        state_name</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">  )</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT TOP 10</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">      state_name, avg_mcsa, avg_mfccsa</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM </span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="st">      StateAverages</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE </span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="st">      avg_mcsa IS NOT NULL</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="st">      AND avg_mfccsa IS NOT NULL</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="st">  ORDER BY </span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="st">      avg_mcsa ASC, avg_mfccsa ASC;</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       state_name avg_mcsa avg_mfccsa
+1          Hawaii 34.62000  136.73250
+2       Tennessee 52.36842   68.68421
+3    North Dakota 56.85981   57.71358
+4     Mississippi 64.12427   43.39024
+5        Illinois 78.72549   70.36078
+6  South Carolina 81.57609   79.78261
+7        Oklahoma 84.17519   83.62026
+8        Delaware 84.33000   70.13667
+9        Arkansas 85.01667   82.79533
+10         Kansas 89.04571   83.16286</code></pre>
+</div>
+</div>
+<p>A la consulta se le agregó la clausula where para eliminar valores nulos, ya que sin esta hay estados que devuelven valores nulos, indicando que no hay datos para algunos estados en el año 2018.</p>
+</section>
+<section id="variables-más-correlacionadas-con-los-precios-de-cuidado" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Variables más correlacionadas con los precios de cuidado</h1>
+<p>mcsa Precio mediano semanal cobrado por cuidado basado en centro para aquellos que están en edad escolar basado en los resultados reportados en el informe de encuesta de tasa de mercado para el condado o la zona/grupo al que pertenece el condado.</p>
+<p>mfccsa Precio mediano semanal cobrado por cuidado familiar para aquellos que están en edad escolar basado en los resultados reportados en el informe de encuesta de tasa de mercado para el condado o la zona/grupo al que pertenece el condado.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Función para calcular correlaciones con mcsa y mfccsa</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>calculate_correlations <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_name) {</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">variable_name =</span> col_name,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">corr_with_mcsa =</span> <span class="fu">cor</span>(df[[col_name]], df<span class="sc">$</span>mcsa, <span class="at">use=</span><span class="st">"complete.obs"</span>, <span class="at">method=</span><span class="st">"pearson"</span>),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">corr_with_mfccsa =</span> <span class="fu">cor</span>(df[[col_name]], df<span class="sc">$</span>mfccsa, <span class="at">use=</span><span class="st">"complete.obs"</span>, <span class="at">method=</span><span class="st">"pearson"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables de interés</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'unr_16'</span>, <span class="st">'funr_16'</span>, <span class="st">'munr_16'</span>, <span class="st">'unr_20to64'</span>, <span class="st">'funr_20to64'</span>, <span class="st">'munr_20to64'</span>, </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>               <span class="st">'flfpr_20to64'</span>, <span class="st">'flfpr_20to64_under6'</span>, <span class="st">'flfpr_20to64_6to17'</span>, <span class="st">'flfpr_20to64_under6_6to17'</span>, </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>               <span class="st">'mlfpr_20to64'</span>, <span class="st">'pr_f'</span>, <span class="st">'pr_p'</span>, <span class="st">'mhi_2018'</span>, <span class="st">'me_2018'</span>, <span class="st">'fme_2018'</span>, <span class="st">'mme_2018'</span>)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar la función para calcular correlaciones</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>correlation_data <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(variables, <span class="sc">~</span><span class="fu">calculate_correlations</span>(childcare_costs, .x))</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>correlation_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 17 × 3
+   variable_name             corr_with_mcsa corr_with_mfccsa
+   &lt;chr&gt;                              &lt;dbl&gt;            &lt;dbl&gt;
+ 1 unr_16                           -0.0836        -0.0944  
+ 2 funr_16                          -0.105         -0.112   
+ 3 munr_16                          -0.0559        -0.0683  
+ 4 unr_20to64                       -0.0823        -0.0947  
+ 5 funr_20to64                      -0.106         -0.113   
+ 6 munr_20to64                      -0.0522        -0.0666  
+ 7 flfpr_20to64                      0.263          0.263   
+ 8 flfpr_20to64_under6               0.0944         0.0880  
+ 9 flfpr_20to64_6to17                0.102          0.104   
+10 flfpr_20to64_under6_6to17         0.0200         0.000360
+11 mlfpr_20to64                      0.185          0.196   
+12 pr_f                             -0.309         -0.317   
+13 pr_p                             -0.290         -0.303   
+14 mhi_2018                          0.499          0.507   
+15 me_2018                           0.389          0.399   
+16 fme_2018                          0.422          0.429   
+17 mme_2018                          0.321          0.327   </code></pre>
+</div>
+</div>
+<p>A primera vista no se ve una correlación importante entre ninguna variable, aunque las correlaciones mas importantes se ven en variables de ingreso, mhi, me, fme, mme.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

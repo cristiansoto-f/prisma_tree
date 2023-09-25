@@ -1,0 +1,11 @@
+---
+title: "Sobre mí"
+---
+
+## Cristian Soto
+
+Soy un analista de datos y estudiante de la licenciatura en sistemas de la UBA (Universidad de Buenos Aires). Anteriormente, seguía la carrera de actuario. Mi pasión radica en los datos y la tecnología.
+
+### Experiencia laboral
+
+Mis anteriores trabajos en el analisis de datos de blockchain puede ser encontrado en [flipsidecrypto.xyz/mrwildcat](https://flipsidecrypto.xyz/mrwildcat).
